@@ -1,10 +1,9 @@
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.KeyInput;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -56,7 +55,27 @@ public class Exercise2 {
         hover.moveToElement(element).perform();
     }
 
-    
+    @Test
+    public void shiftItems(){
+        Select box = new Select(driver.findElement(By.name("food")));
+        box.selectByValue("pizza");
+        box.selectByValue("burger");
+    }
+
+    @Test
+    public void uploadFile(){
+        driver.findElement(By.name("pic")).sendKeys("C:\\Users\\Denis.Kozyra\\OneDrive - xcircular.com\\Desktop\\125.jpg");
+    }
+
+    @Test
+    public void scrollDown(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement Element = driver.findElement(By.id("clickMe"));
+      //js.executeScript("arguments[0].scrollIntoView();", Element); //by element
+        //js.executeScript("window.scrollBy(0,1000)", ""); //by location
+    }
+
+
 
     private static void takeElementScreenshot(WebElement element){
         File screenShotFile = element.getScreenshotAs(OutputType.FILE); // take the screenshot
